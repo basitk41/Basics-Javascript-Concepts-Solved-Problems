@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Javascript</title>
+    <style>
+      .btn {
+        font-size: 35px;
+      }
+      #calculator {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div
+            onclick="myFunction()"
+            id="btnDiv"
+            style="
+              border: 2px rgba(100, 52, 19, 0.842) solid;
+              margin-top: 20px;
+              border-radius: 5px;
+              background-color: rgba(100, 52, 19, 0.842);
+              cursor: pointer;
+            "
+          >
+            <button id="btn" style="border-radius: 5px">OFF</button>
+          </div>
+        </div>
+        <div
+          id="calculator"
+          class="col-sm-8"
+          style="
+            border: 3px rgb(34, 185, 190) solid;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: rgb(170, 218, 15);
+            transition: all 0.5s ease-in-out 0.3s;
+          "
+        >
+          <h1 align="center" class="text text-primary" style="font-size: 70px">
+            Calculator
+          </h1>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type="text" id="cal" class="form-control" autofocus />
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-3">
+              <a href="#" onclick="reset()" class="btn btn-info btn-block">C</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="pp()" class="btn btn-info btn-block">)</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="back()" class="btn btn-info btn-block">x</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="divide()" class="btn btn-info btn-block"
+                >/</a
+              >
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-3">
+              <a href="#" onclick="seven()" class="btn btn-info btn-block">7</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="eight()" class="btn btn-info btn-block">8</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="nine()" class="btn btn-info btn-block">9</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="dot()" class="btn btn-info btn-block">*</a>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-3">
+              <a href="#" onclick="four()" class="btn btn-info btn-block">4</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="five()" class="btn btn-info btn-block">5</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="six()" class="btn btn-info btn-block">6</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="minus()" class="btn btn-info btn-block">-</a>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-3">
+              <a href="#" onclick="one()" class="btn btn-info btn-block">1</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="two()" class="btn btn-info btn-block">2</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="three()" class="btn btn-info btn-block">3</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="plus()" class="btn btn-info btn-block">+</a>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-3">
+              <a href="#" onclick="cc()" class="btn btn-info btn-block">(</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="zero()" class="btn btn-info btn-block">0</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="point()" class="btn btn-info btn-block">.</a>
+            </div>
+            <div class="col-sm-3">
+              <a href="#" onclick="equal()" class="btn btn-info btn-block">=</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+    <script src="calculator.js"></script>
+  </body>
+</html>
+<script>
+  let logic = true;
+  function myFunction() {
+    const btnDiv = document.getElementById("btnDiv");
+    const btn = document.getElementById("btn");
+    const calculator = document.getElementById("calculator");
+    if (logic) {
+      btnDiv.style.textAlign = "right";
+      btn.innerHTML = "ON";
+      btn.style.backgroundColor = "#0FCDBF";
+      btn.style.color = "white";
+      calculator.style.visibility = "visible";
+      calculator.style.opacity = 1;
+      logic = false;
+    } else {
+      btnDiv.style.textAlign = "left";
+      btn.innerHTML = "OFF";
+      btn.style.backgroundColor = "white";
+      btn.style.color = "black";
+      calculator.style.opacity = 0;
+      calculator.style.visibility = "hidden";
+      logic = true;
+    }
+  }
+</script>
